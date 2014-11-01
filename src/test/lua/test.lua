@@ -8,7 +8,9 @@ function stub(name)
 	end
 end
 
-LOG = print
+function LOG(s)
+  print(os.date("[%H:%M:%S]", os.time()).." "..s)
+end
 
 local Plugin = {
 	["SetName"] = function(plugin, name) 

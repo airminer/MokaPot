@@ -35,9 +35,7 @@ class MokaPot {
         System.setErr(new PrintStream(new LoggerOutputStream(global, Level.WARNING), true));
 	}
 	
-	public static void log(String s) {
-		out.println(s);
-	}
+	public static native void log(String s);
 	
 	public static void logInfo(String s) {
 		out.println(s);

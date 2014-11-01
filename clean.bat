@@ -1,1 +1,1 @@
-@rmdir /S /Q target 2> nul
+@if exist target rmdir /S /Q target
