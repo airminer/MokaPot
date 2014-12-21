@@ -42,7 +42,7 @@ import org.bukkit.util.CachedServerIcon;
 import com.avaje.ebean.config.ServerConfig;
 
 @SuppressWarnings("deprecation")
-class MokaPotServer implements Server {
+public class MokaPotServer implements Server {
 
 	private final Logger logger = Logger.getLogger("Minecraft");
 	

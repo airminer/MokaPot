@@ -1,22 +1,24 @@
 PLUGIN = nil
 
 function Initialize(Plugin)
-print(debug.getinfo(1).source)
+--print(debug.getinfo(1).source)
 
 	Plugin:SetName("MokaPot")
 	Plugin:SetVersion(1)
 	
-	--print("PATH="..os.getenv("Path"))
+  javavm = require("javavm")
+  javavm.create("-Djava.class.path=Plugins/MokaPot/jnlua-0.9.6.jar;Plugins/MokaPot/mokapot.jar;Plugins/MokaPot/bukkit.jar", "-Djava.library.path=Plugins/MokaPot")
+ 
+  MokaPot = java.require("airminer.mokapot.MokaPot")
 	
-	package.preload["mokapot"] = package.loaders[3]("mokapot")
-	require("mokapot")
-	mokapot.Initialize()
+	LuaStateRegistry = java.require("airminer.mokapot.LuaStateRegistry")
 	
-	--[[for i, v in pairs( package.loaders ) do
-		print(i, v)
-	end]]--
+	LuaStateRegistry:setLuaState()
 	
-	mokapot.hello()
+	MokaPot:helloWorld()
+	
+	MokaPot:loadPlugins()
+	
 	
 	-- Hooks
 	
@@ -37,6 +39,5 @@ end
 
 function OnDisable()
 	LOG(PLUGIN:GetName() .. " is shutting down...");
-	LOG(PLUGIN:GetName() .. " C library is shutting down...");
-	mokapot.OnDisable()
+  javavm.destroy()
 end

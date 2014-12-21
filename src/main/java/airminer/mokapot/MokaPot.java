@@ -11,19 +11,18 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
 import org.bukkit.plugin.java.JavaPluginLoader;
 
-class MokaPot {
+import com.naef.jnlua.LuaState;
+
+public class MokaPot {
 	private static MokaPotServer server = new MokaPotServer();
 	private static SimpleCommandMap commandMap = new SimpleCommandMap(server);
 	public static SimplePluginManager pluginManager = new SimplePluginManager(server, commandMap);
 
-	public static PrintStream out;
-	public static PrintStream err;
+	public static PrintStream out = System.out;
+	public static PrintStream err = System.err;
 	
 	
 	static {
-		out = System.out;
-		err = System.err;
-		
 		java.util.logging.Logger global = java.util.logging.Logger.getLogger("");
         global.setUseParentHandlers(false);
         for (java.util.logging.Handler handler : global.getHandlers()) {
@@ -35,7 +34,12 @@ class MokaPot {
         System.setErr(new PrintStream(new LoggerOutputStream(global, Level.WARNING), true));
 	}
 	
-	public static native void log(String s);
+	public static void log(String s) {
+		LuaState luaState = LuaStateRegistry.getLuaState();
+		luaState.getGlobal("LOG");
+		luaState.pushString(s);
+		luaState.call(1, 0);
+	}
 	
 	public static void logInfo(String s) {
 		out.println(s);
