@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.BanList;
 import org.bukkit.BanList.Type;
 import org.bukkit.GameMode;
@@ -46,584 +47,579 @@ public class MokaPotServer implements Server {
 
 	private final Logger logger = Logger.getLogger("Minecraft");
 
-	public MokaPotServer() {
-
-	}
-
 	@Override
 	public void sendPluginMessage(Plugin source, String channel, byte[] message) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Set<String> getListeningPluginChannels() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getVersion() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getBukkitVersion() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Player[] getOnlinePlayers() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getMaxPlayers() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getPort() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getViewDistance() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getIp() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getServerName() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getServerId() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getWorldType() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean getGenerateStructures() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean getAllowEnd() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean getAllowNether() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean hasWhitelist() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void setWhitelist(boolean value) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Set<OfflinePlayer> getWhitelistedPlayers() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void reloadWhitelist() {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int broadcastMessage(String message) {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getUpdateFolder() {
 		// TODO Auto-generated method stub
-		return "";
+		return "update";
 	}
 
 	@Override
 	public File getUpdateFolderFile() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public long getConnectionThrottle() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getTicksPerAnimalSpawns() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getTicksPerMonsterSpawns() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Player getPlayer(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Player getPlayerExact(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public List<Player> matchPlayer(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Player getPlayer(UUID id) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public PluginManager getPluginManager() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public BukkitScheduler getScheduler() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ServicesManager getServicesManager() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public List<World> getWorlds() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public World createWorld(WorldCreator creator) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean unloadWorld(String name, boolean save) {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean unloadWorld(World world, boolean save) {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public World getWorld(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public World getWorld(UUID uid) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public MapView getMap(short id) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public MapView createMap(World world) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void reload() {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Logger getLogger() {
-		// TODO Auto-generated method stub
 		return logger;
 	}
 
 	@Override
 	public PluginCommand getPluginCommand(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void savePlayers() {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void configureDbConfig(ServerConfig config) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean addRecipe(Recipe recipe) {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public List<Recipe> getRecipesFor(ItemStack result) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Iterator<Recipe> recipeIterator() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void clearRecipes() {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void resetRecipes() {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Map<String, String[]> getCommandAliases() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getSpawnRadius() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void setSpawnRadius(int value) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean getOnlineMode() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean getAllowFlight() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean isHardcore() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean useExactLoginLocation() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void shutdown() {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int broadcast(String message, String permission) {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public OfflinePlayer getOfflinePlayer(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public OfflinePlayer getOfflinePlayer(UUID id) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Set<String> getIPBans() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void banIP(String address) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void unbanIP(String address) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Set<OfflinePlayer> getBannedPlayers() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public BanList getBanList(Type type) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Set<OfflinePlayer> getOperators() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public GameMode getDefaultGameMode() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void setDefaultGameMode(GameMode mode) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ConsoleCommandSender getConsoleSender() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public File getWorldContainer() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public OfflinePlayer[] getOfflinePlayers() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Messenger getMessenger() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public HelpMap getHelpMap() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Inventory createInventory(InventoryHolder owner, InventoryType type) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Inventory createInventory(InventoryHolder owner, InventoryType type, String title) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getMonsterSpawnLimit() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getAnimalSpawnLimit() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getWaterAnimalSpawnLimit() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getAmbientSpawnLimit() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public boolean isPrimaryThread() {
 		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getMotd() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public String getShutdownMessage() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public WarningState getWarningState() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ItemFactory getItemFactory() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public ScoreboardManager getScoreboardManager() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public CachedServerIcon getServerIcon() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public void setIdleTimeout(int threshold) {
 		// TODO Auto-generated method stub
-
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public int getIdleTimeout() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public UnsafeValues getUnsafe() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 }
