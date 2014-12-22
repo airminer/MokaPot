@@ -1,11 +1,9 @@
-
-
 function stub(name)
-	return function(...)
-		local t = {...}
-		print("    "..name.."(): stub!")
-		return 0
-	end
+  return function(...)
+    local t = {...}
+    print("    "..name.."(): stub!")
+    return 0
+  end
 end
 
 function LOG(s)
@@ -13,18 +11,18 @@ function LOG(s)
 end
 
 local Plugin = {
-	["SetName"] = function(plugin, name) 
-		plugin.name = name
-	end,
-	["SetVersion"] = function(plugin, version)
-		plugin.version = version
-	end,
-	["GetName"] = function(plugin)
-		return plugin.name
-	end,
-	["GetVersion"] = function(plugin)
-		return plugin.version
-	end
+  ["SetName"] = function(plugin, name)
+    plugin.name = name
+  end,
+  ["SetVersion"] = function(plugin, version)
+    plugin.version = version
+  end,
+  ["GetName"] = function(plugin)
+    return plugin.name
+  end,
+  ["GetVersion"] = function(plugin)
+    return plugin.version
+  end
 }
 
 print("Loading mokapot.lua")

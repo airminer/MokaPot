@@ -45,15 +45,15 @@ import com.avaje.ebean.config.ServerConfig;
 public class MokaPotServer implements Server {
 
 	private final Logger logger = Logger.getLogger("Minecraft");
-	
+
 	public MokaPotServer() {
-		
+
 	}
-	
+
 	@Override
 	public void sendPluginMessage(Plugin source, String channel, byte[] message) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -155,7 +155,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void setWhitelist(boolean value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -167,7 +167,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void reloadWhitelist() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -299,7 +299,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void reload() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -317,12 +317,11 @@ public class MokaPotServer implements Server {
 	@Override
 	public void savePlayers() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public boolean dispatchCommand(CommandSender sender, String commandLine)
-			throws CommandException {
+	public boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -330,7 +329,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void configureDbConfig(ServerConfig config) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -354,13 +353,13 @@ public class MokaPotServer implements Server {
 	@Override
 	public void clearRecipes() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void resetRecipes() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -378,7 +377,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void setSpawnRadius(int value) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -408,7 +407,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void shutdown() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -438,13 +437,13 @@ public class MokaPotServer implements Server {
 	@Override
 	public void banIP(String address) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void unbanIP(String address) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -474,7 +473,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void setDefaultGameMode(GameMode mode) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -514,22 +513,19 @@ public class MokaPotServer implements Server {
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder owner, InventoryType type,
-			String title) {
+	public Inventory createInventory(InventoryHolder owner, InventoryType type, String title) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder owner, int size)
-			throws IllegalArgumentException {
+	public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder owner, int size,
-			String title) throws IllegalArgumentException {
+	public Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -601,15 +597,13 @@ public class MokaPotServer implements Server {
 	}
 
 	@Override
-	public CachedServerIcon loadServerIcon(File file)
-			throws IllegalArgumentException, Exception {
+	public CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CachedServerIcon loadServerIcon(BufferedImage image)
-			throws IllegalArgumentException, Exception {
+	public CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -617,7 +611,7 @@ public class MokaPotServer implements Server {
 	@Override
 	public void setIdleTimeout(int threshold) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -631,5 +625,5 @@ public class MokaPotServer implements Server {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

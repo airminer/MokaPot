@@ -20,35 +20,34 @@ public class MokaPot {
 
 	public static PrintStream out = System.out;
 	public static PrintStream err = System.err;
-	
-	
+
 	static {
 		java.util.logging.Logger global = java.util.logging.Logger.getLogger("");
-        global.setUseParentHandlers(false);
-        for (java.util.logging.Handler handler : global.getHandlers()) {
-            global.removeHandler(handler);
-        }
-        global.addHandler(new LuaHandler());
-        
-        System.setOut(new PrintStream(new LoggerOutputStream(global, Level.INFO), true));
-        System.setErr(new PrintStream(new LoggerOutputStream(global, Level.WARNING), true));
+		global.setUseParentHandlers(false);
+		for (java.util.logging.Handler handler : global.getHandlers()) {
+			global.removeHandler(handler);
+		}
+		global.addHandler(new LuaHandler());
+
+		System.setOut(new PrintStream(new LoggerOutputStream(global, Level.INFO), true));
+		System.setErr(new PrintStream(new LoggerOutputStream(global, Level.WARNING), true));
 	}
-	
+
 	public static void log(String s) {
 		LuaState luaState = LuaStateRegistry.getLuaState();
 		luaState.getGlobal("LOG");
 		luaState.pushString(s);
 		luaState.call(1, 0);
 	}
-	
+
 	public static void logInfo(String s) {
 		out.println(s);
 	}
-	
+
 	public static void logWarning(String s) {
 		out.println(s);
 	}
-	
+
 	public static void helloWorld() {
 		System.out.println("Hello Java!");
 	}
