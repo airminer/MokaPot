@@ -11,6 +11,10 @@ public class LuaStateRegistry {
 	public static final SetLuaState setLuaState = new SetLuaState();
 
 	public static class SetLuaState implements JavaReflector, JavaFunction {
+
+		private SetLuaState() {
+		}
+
 		@Override
 		public JavaFunction getMetamethod(Metamethod metamethod) {
 			switch (metamethod) {
