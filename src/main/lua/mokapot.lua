@@ -6,6 +6,10 @@ function Initialize(Plugin)
   Plugin:SetName("MokaPot")
   Plugin:SetVersion(1)
 
+  package.preload["mokapot"] = package.loaders[3]("mokapot")
+  require("mokapot")
+  mokapot.initenv()
+
   javavm = require("javavm")
   javavm.create("-Djava.class.path=Plugins/MokaPot/jnlua-0.9.6.jar;Plugins/MokaPot/mokapot.jar;Plugins/MokaPot/bukkit.jar", "-Djava.library.path=Plugins/MokaPot")
 
