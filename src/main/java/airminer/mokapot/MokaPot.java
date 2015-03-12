@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.SimplePluginManager;
@@ -31,6 +32,12 @@ public class MokaPot {
 
 		System.setOut(new PrintStream(new LoggerOutputStream(global, Level.INFO), true));
 		System.setErr(new PrintStream(new LoggerOutputStream(global, Level.WARNING), true));
+		
+		try {
+			Bukkit.setServer(server);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void log(String s) {

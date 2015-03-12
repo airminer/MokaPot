@@ -5,29 +5,28 @@ function Initialize(Plugin)
 
   Plugin:SetName("MokaPot")
   Plugin:SetVersion(1)
-
+ 
   package.preload["mokapot"] = package.loaders[3]("mokapot")
   require("mokapot")
   mokapot.initenv()
 
-  javavm = require("javavm")
+  mokapot.luaplugin = Plugin
+
+  require("javavm")
   javavm.create("-Djava.class.path=Plugins/MokaPot/jnlua-0.9.6.jar;Plugins/MokaPot/mokapot.jar;Plugins/MokaPot/bukkit.jar", "-Djava.library.path=Plugins/MokaPot")
 
-  MokaPot = java.require("airminer.mokapot.MokaPot")
+  mokapot.mainclass = java.require("airminer.mokapot.MokaPot")
 
-  LuaStateRegistry = java.require("airminer.mokapot.LuaStateRegistry")
+  java.require("airminer.mokapot.LuaStateRegistry"):setLuaState()
 
-  LuaStateRegistry:setLuaState()
+  mokapot.mainclass:helloWorld()
 
-  MokaPot:helloWorld()
-
-  MokaPot:loadPlugins()
+  mokapot.mainclass:loadPlugins()
 
 
   -- Hooks
 
-  PLUGIN = Plugin -- NOTE: only needed if you want OnDisable() to use GetName() or something like that
-
+ 
   -- Command Bindings
 
   --[[
@@ -52,6 +51,6 @@ function Initialize(Plugin)
 end
 
 function OnDisable()
-  LOG(PLUGIN:GetName() .. " is shutting down...");
+  LOG(mokapot.luaplugin:GetName() .. " is shutting down...");
   javavm.destroy()
 end

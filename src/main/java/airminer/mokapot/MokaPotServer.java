@@ -41,6 +41,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 
 import com.avaje.ebean.config.ServerConfig;
+import com.naef.jnlua.LuaState;
 
 @SuppressWarnings("deprecation")
 public class MokaPotServer implements Server {
@@ -61,20 +62,31 @@ public class MokaPotServer implements Server {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		/*LuaState l  = LuaStateRegistry.getLuaState();  //causes problems on linux for some reason
+		l.getGlobal("mokapot");
+		l.getField(-1, "luaplugin");
+		l.getField(-1, "GetName");
+		l.pushValue(-2);
+		l.call(1, 1);
+		return l.toString(-1);*/
+		return "MokaPot";
 	}
 
 	@Override
 	public String getVersion() {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		/*LuaState l  = LuaStateRegistry.getLuaState();
+		l.getGlobal("mokapot");
+		l.getField(-1, "luaplugin");
+		l.getField(-1, "GetVersion");
+		l.pushValue(-2);
+		l.call(1, 1);
+		return l.toString(-1);*/
+		return "1";
 	}
 
 	@Override
 	public String getBukkitVersion() {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		return "1.7.9-R0.2";
 	}
 
 	@Override
