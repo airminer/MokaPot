@@ -1,0 +1,84 @@
+apply plugin: 'java'
+apply plugin: 'c'
+
+sourceCompatibility = 1.6 
+version = '0.1'
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.3'
+}
+
+repositories {
+	maven {
+		url "http://repo.bukkit.org/content/groups/public/"
+	}
+	
+	flatDir {
+		dirs 'lib'
+	}
+}
+
+dependencies {
+	compile 'org.bukkit:bukkit:1.7.9-R0.2'
+	compile ':jnlua-0.9.6'
+}
+
+model {
+	repositories {
+		libs(PrebuiltLibraries) {
+			lua {
+				headers.srcDir "lib/lua/src"
+				//binaries.withType(StaticLibraryBinary) {
+				//	def libName = targetPlatform.operatingSystem.windows ? 'util.lib' : 'libutil.a'
+				//	staticLibraryFile = file("3rd-party-lib/util/build/binaries/utilStaticLibrary/${buildType.name}/${libName}")
+				//}
+				binaries.withType(SharedLibraryBinary) {
+					def os = targetPlatform.operatingSystem
+					def baseDir = "lib/lua"
+					if (os.windows) {
+						// Windows uses a .dll file, with a different link file if it exists (not Cygwin or MinGW)
+						sharedLibraryFile = file("${baseDir}/lua5.1.dll")
+						//if (file("${baseDir}/lua5.1.lib").exists()) {
+						//	sharedLibraryLinkFile = file("${baseDir}/lua5.1.lib")
+						//}
+					} else if (os.macOsX) {
+						sharedLibraryFile = file("${baseDir}/liblua5.1.dylib")
+					} else {
+						sharedLibraryFile = file("${baseDir}/liblua5.1.so")
+					}
+				}
+			}
+		}
+	}
+	components {
+		mokapot(NativeLibrarySpec) {
+			sources {
+				c {
+					source {
+						srcDir "src/main/c"
+						include "**/*.c"
+					}
+					//exportedHeaders {
+					//	srcDir "lua-5.1/src"
+					//	include "**/*.h"
+					//}
+					lib library: 'lua'
+				}
+			}
+		}
+	}
+}
+
+
+check.dependsOn -= test
+task test(overwrite: true) {
+	dependsOn classes, testClasses
+	description 'Runs the tests.'
+	group 'verification'
+	outputs.dir file('build/classes/test')
+	inputs.dir file('src/test')
+	doFirst {
+		
+	}
+}
+check.dependsOn += test
