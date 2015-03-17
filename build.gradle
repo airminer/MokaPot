@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'c'
 
 sourceCompatibility = 1.6 
-version = '0.1'
+//version = '0.1'
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.3'
@@ -66,12 +66,19 @@ model {
 					binaries.withType(StaticLibraryBinarySpec) { bin ->
 						binaries.remove(bin)
 					}
+					binaries.withType(SharedLibraryBinarySpec) { bin ->
+						bin.sharedLibraryFile file("build/staging/Plugins/MokaPot/mokapot.dll")
+						bin.sharedLibraryLinkFile bin.sharedLibraryFile
+					}
 				}
 			}
 		}
 	}
 }
 
+jar {
+	destinationDir file("build/staging/Plugins/MokaPot")
+}
 
 check.dependsOn -= test
 task test(overwrite: true) {
