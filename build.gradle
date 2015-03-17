@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'c'
 
 sourceCompatibility = 1.6 
-//version = '0.1'
+version = '0.1'
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.3'
@@ -77,6 +77,7 @@ model {
 }
 
 jar {
+	archiveName "mokapot.jar"
 	destinationDir file("build/staging/Plugins/MokaPot")
 }
 
