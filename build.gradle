@@ -80,6 +80,14 @@ jar {
 	destinationDir file("build/staging/Plugins/MokaPot")
 }
 
+task luaScripts(type: Copy) {
+	description "Copies the lua scripts to the staging directory."
+	group "build"
+	from "src/main/lua"
+	into "build/staging/Plugins/MokaPot"
+}
+assemble.dependsOn += luaScripts
+
 check.dependsOn -= test
 task test(overwrite: true) {
 	dependsOn classes, testClasses
