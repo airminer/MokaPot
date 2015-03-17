@@ -63,6 +63,9 @@ model {
 					//	include "**/*.h"
 					//}
 					lib library: 'lua'
+					binaries.withType(StaticLibraryBinarySpec) { bin ->
+						binaries.remove(bin)
+					}
 				}
 			}
 		}
