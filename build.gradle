@@ -24,33 +24,33 @@ dependencies {
 }
 
 model {
-	repositories {
-		libs(PrebuiltLibraries) {
-			lua {
-				headers.srcDir "lib/lua/src"
-				//binaries.withType(StaticLibraryBinary) {
-				//	def libName = targetPlatform.operatingSystem.windows ? 'util.lib' : 'libutil.a'
-				//	staticLibraryFile = file("3rd-party-lib/util/build/binaries/utilStaticLibrary/${buildType.name}/${libName}")
-				//}
-				binaries.withType(SharedLibraryBinary) {
-					def os = targetPlatform.operatingSystem
-					def baseDir = "lib/lua"
-					if (os.windows) {
-						// Windows uses a .dll file, with a different link file if it exists (not Cygwin or MinGW)
-						sharedLibraryFile = file("${baseDir}/lua5.1.dll")
-						//if (file("${baseDir}/lua5.1.lib").exists()) {
-						//	sharedLibraryLinkFile = file("${baseDir}/lua5.1.lib")
-						//}
-					} else if (os.macOsX) {
-						sharedLibraryFile = file("${baseDir}/liblua5.1.dylib")
-					} else {
-						sharedLibraryFile = file("${baseDir}/liblua5.1.so")
+	components {
+		lua(NativeLibrarySpec) {
+			sources {
+				c {
+					source {
+						srcDir "lib/lua/src"
+						include("lapi.c", "lcode.c", "ldebug.c", "ldo.c", "ldump.c", "lfunc.c", "lgc.c", "llex.c",
+							"lmem.c", "lobject.c", "lopcodes.c", "lparser.c", "lstate.c", "lstring.c",
+							"ltable.c", "ltm.c", "lundump.c", "lvm.c", "lzio.c",
+							"lauxlib.c", "lbaselib.c", "ldblib.c", "liolib.c", "lmathlib.c", "loslib.c",
+							"ltablib.c", "lstrlib.c", "loadlib.c", "linit.c")
+					}
+					exportedHeaders {
+						srcDir "lib/lua/src"
+						include "**/*.h"
+					}
+					binaries.withType(StaticLibraryBinarySpec) { bin ->
+						binaries.remove(bin)
+					}
+					binaries.withType(SharedLibraryBinarySpec) { bin ->
+						bin.sharedLibraryFile file("build/staging/lua5.1.dll")
+						bin.sharedLibraryLinkFile bin.sharedLibraryFile
 					}
 				}
 			}
 		}
-	}
-	components {
+
 		mokapot(NativeLibrarySpec) {
 			sources {
 				c {
