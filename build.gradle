@@ -25,7 +25,7 @@ dependencies {
 
 model {
 	components {
-		lua(NativeLibrarySpec) {
+		lua51(NativeLibrarySpec) {
 			sources {
 				c {
 					source {
@@ -51,6 +51,21 @@ model {
 			}
 		}
 
+		lua(NativeExecutableSpec) {
+			sources {
+				c {
+					source {
+						srcDir "lib/lua/src"
+						include "lua.c"
+					}
+					lib library: "lua51"
+					binaries.all { bin ->
+						bin.executableFile file("build/staging/lua.exe")
+					}
+				}
+			}
+		}
+
 		mokapot(NativeLibrarySpec) {
 			sources {
 				c {
@@ -62,7 +77,7 @@ model {
 					//	srcDir "lua-5.1/src"
 					//	include "**/*.h"
 					//}
-					lib library: 'lua'
+					lib library: 'lua51'
 					binaries.withType(StaticLibraryBinarySpec) { bin ->
 						binaries.remove(bin)
 					}
@@ -87,17 +102,32 @@ task luaScripts(type: Copy) {
 	from "src/main/lua"
 	into "build/staging/Plugins/MokaPot"
 }
-assemble.dependsOn += luaScripts
+
+assemble.dependsOn luaScripts
+
+task copyLibs(type: Copy) {
+	group "build"
+	from "lib", "natives"
+	exclude "**/lua"
+	into "build/staging/Plugins/MokaPot"
+}
+
+assemble.dependsOn copyLibs
+
+task runTest(type: Exec) {
+	dependsOn assemble
+	workingDir "build/staging"
+	commandLine "lua", "../../src/test/lua/test.lua"
+}
 
 check.dependsOn -= test
-task test(overwrite: true) {
-	dependsOn classes, testClasses
+
+test {
+	dependsOn.clear()
+	dependsOn runTest
+	deleteAllActions()
 	description 'Runs the tests.'
-	group 'verification'
-	outputs.dir file('build/classes/test')
-	inputs.dir file('src/test')
-	doFirst {
-		
-	}
 }
-check.dependsOn += test
+
+check.dependsOn test
+check.dependsOn -= testClasses
