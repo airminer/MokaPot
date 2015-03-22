@@ -28,6 +28,11 @@ dependencies {
 	compile ':jnlua-0.9.6'
 }
 
+if(gradle.startParameter.taskNames.contains("clean")) {
+	delete "lib/lua-5.1.5"
+} 
+
+
 if(!(new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz")).exists()) {
 	download {
 		src "http://www.lua.org/ftp/lua-5.1.5.tar.gz"
@@ -35,25 +40,14 @@ if(!(new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz")).exists()) {
 	}
 }
 
-gradle.taskGraph.whenReady {taskGraph ->
-    if (taskGraph.hasTask(clean)) {
-        taskGraph.afterTask { Task task, TaskState state ->
-			if (task==clean && !file("build/lib/lua-5.1.5").exists()) {
-				copy {
-					from tarTree(new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz"))
-					into "build/lib"
-				}
-			}
-		}
-    } else {
-		if(!file("build/lib/lua-5.1.5").exists()) {
-			copy {
-				from tarTree(new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz"))
-				into "build/lib"
-			}
-		}
-    }
+if(!file("lib/lua-5.1.5").exists()) {
+	copy {
+		from tarTree(new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz"))
+		into "lib"
+	}
 }
+
+
 
 model {
 	components {
@@ -61,7 +55,7 @@ model {
 			sources {
 				c {
 					source {
-						srcDir "build/lib/lua-5.1.5/src"
+						srcDir "lib/lua-5.1.5/src"
 						include("lapi.c", "lcode.c", "ldebug.c", "ldo.c", "ldump.c", "lfunc.c", "lgc.c", "llex.c",
 							"lmem.c", "lobject.c", "lopcodes.c", "lparser.c", "lstate.c", "lstring.c",
 							"ltable.c", "ltm.c", "lundump.c", "lvm.c", "lzio.c",
@@ -69,7 +63,7 @@ model {
 							"ltablib.c", "lstrlib.c", "loadlib.c", "linit.c")
 					}
 					exportedHeaders {
-						srcDir "build/lib/lua-5.1.5/src"
+						srcDir "lib/lua-5.1.5/src"
 						include "**/*.h"
 					}
 					binaries.withType(StaticLibraryBinarySpec) { bin ->
@@ -87,7 +81,7 @@ model {
 			sources {
 				c {
 					source {
-						srcDir "build/lib/lua-5.1.5/src"
+						srcDir "lib/lua-5.1.5/src"
 						include "lua.c"
 					}
 					lib library: "lua51"
