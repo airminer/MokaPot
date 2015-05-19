@@ -48,7 +48,6 @@ if(!file("lib/lua-5.1.5").exists()) {
 }
 
 
-
 model {
 	components {
 		lua51(NativeLibrarySpec) {
@@ -134,7 +133,7 @@ assemble.dependsOn luaScripts
 task copyLibs(type: Copy) {
 	group "build"
 	from "lib", "natives"
-	exclude "**/lua"
+	exclude "**/lua*"
 	into "build/staging/Plugins/MokaPot"
 }
 
