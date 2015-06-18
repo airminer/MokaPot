@@ -34,19 +34,14 @@ void downloadFile(String url, File dest) {
 	java.nio.file.Files.copy(con.inputStream, dest.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
 }
 
-if(gradle.startParameter.taskNames.contains("clean")) {
-	delete "lib/lua-5.1.5"
-} 
-
-downloadFile("http://www.lua.org/ftp/lua-5.1.5.tar.gz", new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz"))
-downloadFile("https://github.com/airminer/jnlua/archive/0.9.6.tar.gz", new File(gradle.gradleUserHomeDir, "caches/jnlua-0.9.6.tar.gz"))
-
-if(!file("lib/lua-5.1.5").exists()) {
-	copy {
-		from tarTree(new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz"))
-		into "lib"
-	}
+void dummyFile(File dummy) {
+	if(dummy.exists()) return
+	dummy.getParentFile().mkdirs()
+	dummy.createNewFile()
 }
+
+dummyFile(new File("build/lib/lua-5.1.5/src/lapi.c"))
+dummyFile(new File("build/lib/lua-5.1.5/src/lua.c"))
 
 model {
 	components {
@@ -54,7 +49,7 @@ model {
 			sources {
 				c {
 					source {
-						srcDir "lib/lua-5.1.5/src"
+						srcDir "build/lib/lua-5.1.5/src"
 						include("lapi.c", "lcode.c", "ldebug.c", "ldo.c", "ldump.c", "lfunc.c", "lgc.c", "llex.c",
 							"lmem.c", "lobject.c", "lopcodes.c", "lparser.c", "lstate.c", "lstring.c",
 							"ltable.c", "ltm.c", "lundump.c", "lvm.c", "lzio.c",
@@ -62,7 +57,7 @@ model {
 							"ltablib.c", "lstrlib.c", "loadlib.c", "linit.c")
 					}
 					exportedHeaders {
-						srcDir "lib/lua-5.1.5/src"
+						srcDir "build/lib/lua-5.1.5/src"
 						include "**/*.h"
 					}
 					binaries.withType(StaticLibraryBinarySpec) { bin ->
@@ -80,7 +75,7 @@ model {
 			sources {
 				c {
 					source {
-						srcDir "lib/lua-5.1.5/src"
+						srcDir "build/lib/lua-5.1.5/src"
 						include "lua.c"
 					}
 					lib library: "lua51"
@@ -98,10 +93,6 @@ model {
 						srcDir "src/main/c"
 						include "**/*.c"
 					}
-					//exportedHeaders {
-					//	srcDir "lua-5.1/src"
-					//	include "**/*.h"
-					//}
 					lib library: 'lua51'
 					binaries.withType(StaticLibraryBinarySpec) { bin ->
 						binaries.remove(bin)
@@ -114,6 +105,38 @@ model {
 			}
 		}
 	}
+}
+
+task downloadLuaSource {
+	description "Downloads the lua source"
+	group "build"
+	outputs.dir new File(buildDir, "lib/lua-5.1.5")
+	doLast {
+		File tar = new File(gradle.gradleUserHomeDir, "caches/lua-5.1.5.tar.gz")
+		downloadFile("http://www.lua.org/ftp/lua-5.1.5.tar.gz", tar)
+		copy {
+			from tarTree(tar)
+			into "build/lib"
+		}
+	}
+}
+
+task downloadJnluaSource {
+	description "Downloads the jnlua source"
+	group "build"
+	outputs.dir new File(buildDir, "lib/jnlua-0.9.6")
+	doLast {
+		File tar = new File(gradle.gradleUserHomeDir, "caches/jnlua-0.9.6.tar.gz")
+		downloadFile("https://github.com/airminer/jnlua/archive/0.9.6.tar.gz", tar)
+		copy {
+			from tarTree(tar)
+			into "build/lib"
+		}
+	}
+}
+
+tasks.whenTaskAdded { task ->
+    if(task.name == "compileLua51SharedLibraryLua51C" || task.name == "compileLuaExecutableLuaC") task.dependsOn downloadLuaSource
 }
 
 jar {
